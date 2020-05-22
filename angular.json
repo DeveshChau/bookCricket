@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bookCricket"
+    }
+  },
+  "defaultProject": "bookCricket",
+  "cli": {
+    "analytics": false
+  }
 }
