@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/service/data.service';
-import { Commentry } from '../shared/interface/bookCricket.interface';
+import { Commentary } from '../shared/interface/bookCricket.interface';
 
 @Component({
   selector: 'app-over-description',
@@ -8,16 +8,16 @@ import { Commentry } from '../shared/interface/bookCricket.interface';
   styleUrls: ['./over-description.component.css']
 })
 export class OverDescriptionComponent implements OnInit {
-  overDescription: Commentry[];
+  overDescription: Commentary[];
   constructor(
     private _dataService: DataService
   ) {
-    this._dataService.commentrySub.subscribe(res => {
-      this.overDescription = res;
+    this._dataService.commentarySub
+    .subscribe(res => {
+      this.overDescription = res      
     })
   }
-
-  ngOnInit(): void {
+  ngOnInit(): void { 
   }
 
 }

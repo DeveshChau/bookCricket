@@ -4,7 +4,7 @@ export interface ScoreBoard {
     overs: number;
     balls: number;
 }
-export interface Commentry {
-    risk: string;
-    runs: number;
+export interface Commentary {
+    overs: number;
+    runs: string;
 }
