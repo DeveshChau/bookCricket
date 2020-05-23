@@ -46,7 +46,7 @@ export class DataService {
     } 
     const commentryObjCopy = {
       risk: risk,
-      runs: score < 6 ? score : 0 
+      runs: score <= 6 ? score : 0 
     } 
     this.commentryObj.push(commentryObjCopy)
     this._scoreBoardSub.next(Object.assign({}, this.scoreboardObj));
