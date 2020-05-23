@@ -29,7 +29,7 @@ export class DataService {
 
   updateScoreBoard(score: number, risk: string) {
     this.balls = this.balls + 1;
-    if (score < 6) {
+    if (score < 7) {
       this.runs += score;
     } else {
       this.wickets = this.wickets + 1;
@@ -46,7 +46,7 @@ export class DataService {
     } 
     const commentryObjCopy = {
       risk: risk,
-      runs: score <= 6 ? score : 0 
+      runs: score < 7 ? score : 0 
     } 
     this.commentryObj.push(commentryObjCopy)
     this._scoreBoardSub.next(Object.assign({}, this.scoreboardObj));
