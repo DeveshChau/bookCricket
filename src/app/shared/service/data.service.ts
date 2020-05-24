@@ -12,7 +12,7 @@ export class DataService {
     overs: 0,
     balls: 0
   }
-  commentaryObj: Commentary[] = [];
+  commentaryObj: Commentary = {overs: 0, runs: ''};
   public runs: number = 0;
   public wickets: number = 0;
   public overs: number = 0;
@@ -21,7 +21,7 @@ export class DataService {
   readonly gameOver = this._gameOver.asObservable();
   private _scoreBoardSub = new BehaviorSubject<ScoreBoard>(this.scoreboardObj);
   readonly scoreBoardSub = this._scoreBoardSub.asObservable();
-  private _commentarySub = new BehaviorSubject<Commentary[]>(this.commentaryObj);
+  private _commentarySub = new Subject<Commentary>();
   readonly commentarySub = this._commentarySub.asObservable();
   constructor() { }
 
@@ -46,10 +46,10 @@ export class DataService {
       overs: this.overs,
       balls: this.balls
     } 
-    this.commentaryObj.push({
+    this.commentaryObj = {
       overs: this.overs,
       runs: score < 7 ? score.toString(10) : 'W' 
-    } )
+    };
     if (this.wickets === 10) {
       this._gameOver.next(true);
     }
