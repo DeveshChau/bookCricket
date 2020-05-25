@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { OverDescriptionComponent } from './over-description/over-description.component';
 import { RiskSelectionComponent } from './risk-selection/risk-selection.component';
+import { BatsmanScorecardComponent } from './batsman-scorecard/batsman-scorecard.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScoreboardComponent,
     OverDescriptionComponent,
-    RiskSelectionComponent
+    RiskSelectionComponent,
+    BatsmanScorecardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

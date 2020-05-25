@@ -8,7 +8,7 @@ import { Commentary } from '../shared/interface/bookCricket.interface';
   styleUrls: ['./over-description.component.css']
 })
 export class OverDescriptionComponent implements OnInit {
-  overDescription: Commentary[] = [];
+  overDescription: Commentary[];
   constructor(
     private _dataService: DataService
   ) {
@@ -17,8 +17,7 @@ export class OverDescriptionComponent implements OnInit {
   ngOnInit(): void {
     this._dataService.commentarySub
       .subscribe(res => {
-        console.log(res)
-        this.overDescription.push(res)
+        this.overDescription = res;
       })
   }
 
