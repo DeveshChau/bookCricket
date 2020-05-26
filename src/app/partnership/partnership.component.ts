@@ -10,10 +10,12 @@ import { Partnership } from '../shared/interface/bookCricket.interface';
 export class PartnershipComponent implements OnInit {
 
   partnershipCard: Partnership[] = [];
+  currentPartnershipCard: Partnership[] = [];
   constructor(private _dataService: DataService) { }
 
   ngOnInit(): void {
-    this.partnershipCard = this._dataService.getPartnershipCard();    
+    this.partnershipCard = this._dataService.getPartnershipCard();   
+    this.currentPartnershipCard = this._dataService.getCurrentPartnerShip()
   }
 
 }

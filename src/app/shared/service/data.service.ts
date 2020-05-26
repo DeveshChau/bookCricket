@@ -81,9 +81,28 @@ export class DataService {
       }]
       return scorecardObjCopy
     }
+
     else if (this.wickets + 1 === this.partnershipObj.slice(-1)[0].partnershipNumber) {
       this.partnershipObj.push(...this.partnershipObj, ...scorecardObjCopy);
     }
     return this.partnershipObj
+  }
+
+  getCurrentPartnerShip() {
+    let scorecardObjCopy: Partnership[] = [{
+      partnershipNumber: 0,
+      runsScored: 0,
+      ballsFaced: 0
+    }];
+    if (this.wickets > 0 && this.wickets < 10) {
+      if (this.wickets === this.partnershipObj.slice(-1)[0].partnershipNumber) {
+        scorecardObjCopy = [{
+          partnershipNumber: this.wickets + 1,
+          runsScored: this.runsScored,
+          ballsFaced: this.ballsFaced
+        }]
+        return scorecardObjCopy;
+      }
+    }
   }
 }
