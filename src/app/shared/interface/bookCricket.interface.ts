@@ -9,8 +9,8 @@ export interface Commentary {
     runs: string;
 }
 
-export interface Scorecard {
-    batsmanNumber: number;
+export interface Partnership {
+    partnershipNumber: number;
     runsScored: number;
     ballsFaced: number;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { ScoreBoard, Commentary, Scorecard } from '../interface/bookCricket.interface';
+import { ScoreBoard, Commentary, Partnership } from '../interface/bookCricket.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class DataService {
     balls: 0
   }
   commentaryObj: Commentary[] = [];
-  scorecardObj: Scorecard[] = []
+  partnershipObj: Partnership[] = []
   public runs: number = 0;
   public wickets: number = 0;
   public overs: number = 0;
@@ -40,8 +40,8 @@ export class DataService {
       this.runsScored += score;
     } else {
       this.wickets = this.wickets + 1;
-      this.scorecardObj.push({
-        batsmanNumber: this.wickets,
+      this.partnershipObj.push({
+        partnershipNumber: this.wickets,
         runsScored: this.runsScored,
         ballsFaced: this.ballsFaced
       });
@@ -71,19 +71,19 @@ export class DataService {
     }
   }
 
-  getScorecard() {
-    let scorecardObjCopy: Scorecard[] = [];
+  getPartnershipCard(): Partnership[] {
+    let scorecardObjCopy: Partnership[] = [];
     if (this.wickets === 0) {
       scorecardObjCopy = [{
-        batsmanNumber: 1,
+        partnershipNumber: 1,
         runsScored: this.runs,
         ballsFaced: this.ballsFaced
       }]
       return scorecardObjCopy
     }
-    if (this.wickets + 1 === this.scorecardObj.slice(-1)[0].batsmanNumber) {
-      this.scorecardObj.push(...this.scorecardObj, ...scorecardObjCopy);
+    else if (this.wickets + 1 === this.partnershipObj.slice(-1)[0].partnershipNumber) {
+      this.partnershipObj.push(...this.partnershipObj, ...scorecardObjCopy);
     }
-    return this.scorecardObj
+    return this.partnershipObj
   }
 }

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BatsmanScorecardComponent } from './batsman-scorecard/batsman-scorecard.component';
+import { PartnershipComponent } from './partnership/partnership.component';
 import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
   {path: "home", component: HomeComponent},
-  {path: "scorecard", component: BatsmanScorecardComponent},
+  {path: "scorecard", component: PartnershipComponent},
   {path: "", component: HomeComponent},
   {path: "**", component: HomeComponent}
 ];
