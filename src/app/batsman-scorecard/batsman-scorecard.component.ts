@@ -14,7 +14,6 @@ export class BatsmanScorecardComponent implements OnInit {
 
   ngOnInit(): void {
     this.scorecard = this._dataService.getScorecard();    
-    console.log(this.scorecard)
   }
 
 }

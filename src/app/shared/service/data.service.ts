@@ -20,11 +20,11 @@ export class DataService {
   public balls: number = 0;
   public ballsFaced: number = 0;
   public runsScored: number = 0;
-  private _gameOver = new Subject();
+  private _gameOver = new BehaviorSubject<boolean>(false);
   readonly gameOver = this._gameOver.asObservable();
   private _scoreBoardSub = new BehaviorSubject<ScoreBoard>(this.scoreboardObj);
   readonly scoreBoardSub = this._scoreBoardSub.asObservable();
-  private _commentarySub = new Subject<Commentary[]>();
+  private _commentarySub = new BehaviorSubject<Commentary[]>([]);
   readonly commentarySub = this._commentarySub.asObservable();
   constructor() { }
 
@@ -66,7 +66,9 @@ export class DataService {
       this._gameOver.next(true);
     }
     this._scoreBoardSub.next(Object.assign({}, this.scoreboardObj));
-    this._commentarySub.next(this.commentaryObj);
+    if (this.balls != 0 || this.overs != 0) {
+      this._commentarySub.next(this.commentaryObj);
+    }
   }
 
   getScorecard() {
@@ -79,7 +81,7 @@ export class DataService {
       }]
       return scorecardObjCopy
     }
-    if (this.wickets+1 === this.scorecardObj.slice(-1)[0].batsmanNumber ) {
+    if (this.wickets + 1 === this.scorecardObj.slice(-1)[0].batsmanNumber) {
       this.scorecardObj.push(...this.scorecardObj, ...scorecardObjCopy);
     }
     return this.scorecardObj
