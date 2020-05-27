@@ -3,7 +3,6 @@ export const environment = {
   firebaseConfig:  {
     apiKey: "AIzaSyC6pjHDUAhb6vAi1nzFdus2Aw1d7E49U7g",
     authDomain: "bookcricket-dd4e4.firebaseapp.com",
-    databaseURL: "https://bookcricket-dd4e4.firebaseio.com",
     projectId: "bookcricket-dd4e4",
     storageBucket: "bookcricket-dd4e4.appspot.com",
     messagingSenderId: "755173641376",

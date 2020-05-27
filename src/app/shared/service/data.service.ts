@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { ScoreBoard, Commentary, Partnership } from '../interface/bookCricket.interface';
+import { ScoreBoard, Commentary, Partnership } from '../model/bookCricket.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,8 @@ export class DataService {
   constructor() { }
 
   getProbability(): number {
-    return Math.floor(Math.random() * 101); //The maximum is inclusive and the minimum is inclusive 
+    //The maximum is inclusive and the minimum is inclusive 
+    return Math.floor(Math.random() * 101);
   }
 
   updateScoreBoard(score: number) {
@@ -88,12 +89,8 @@ export class DataService {
     return this.partnershipObj
   }
 
-  getCurrentPartnerShip() {
-    let scorecardObjCopy: Partnership[] = [{
-      partnershipNumber: 0,
-      runsScored: 0,
-      ballsFaced: 0
-    }];
+  getCurrentPartnerShip(): Partnership[] {
+    let scorecardObjCopy: Partnership[]
     if (this.wickets > 0 && this.wickets < 10) {
       if (this.wickets === this.partnershipObj.slice(-1)[0].partnershipNumber) {
         scorecardObjCopy = [{

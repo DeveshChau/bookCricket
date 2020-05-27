@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/service/data.service';
-import { Commentary } from '../shared/interface/bookCricket.interface';
+import { Commentary } from '../shared/model/bookCricket.model';
 
 @Component({
   selector: 'app-over-description',

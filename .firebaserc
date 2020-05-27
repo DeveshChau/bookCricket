@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "bookcricket-dd4e4"
+  },
+  "targets": {
+    "bookcricket-dd4e4": {
+      "hosting": {
+        "bookCricket": [
+          "bookcricket-dd4e4"
+        ]
+      }
+    }
   }
 }

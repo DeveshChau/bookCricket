@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,7 @@ import { OverDescriptionComponent } from './over-description/over-description.co
 import { RiskSelectionComponent } from './risk-selection/risk-selection.component';
 import { PartnershipComponent } from './partnership/partnership.component';
 import { HomeComponent } from './home/home.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/service/data.service';
-import { ScoreBoard } from '../shared/interface/bookCricket.interface';
+import { ScoreBoard } from '../shared/model/bookCricket.model';
 
 @Component({
   selector: 'app-scoreboard',
