@@ -1,5 +1,5 @@
 <p>
-    <button (click)="onLowRiskSelection()" [disabled]="gameOver">Low</button>
-    <button (click)="onMediunRiskSelection()" [disabled]="gameOver">Medium</button>
-    <button (click)="onHighRiskSelection()" [disabled]="gameOver">High</button>
+    <button (click)="onRiskSelection('low')" [disabled]="gameOver">Low</button>
+    <button (click)="onRiskSelection('mid')" [disabled]="gameOver">Medium</button>
+    <button (click)="onRiskSelection('high')" [disabled]="gameOver">High</button>
 </p>

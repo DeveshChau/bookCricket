@@ -14,6 +14,7 @@ export class DataService {
   }
   commentaryObj: Commentary[] = [];
   partnershipObj: Partnership[] = []
+  public score: number = 0;
   public runs: number = 0;
   public wickets: number = 0;
   public overs: number = 0;
@@ -28,9 +29,43 @@ export class DataService {
   readonly commentarySub = this._commentarySub.asObservable();
   constructor() { }
 
-  getProbability(): number {
+  generateScore(risk: string) {
     //The maximum is inclusive and the minimum is inclusive 
-    return Math.floor(Math.random() * 101);
+    const probability = Math.floor(Math.random() * 101);
+    switch (risk) {
+      case 'low':
+        if (probability <= 50) { this.score = 0 }
+        else if (probability <= 80) { this.score = 1 }
+        else if (probability <= 95) { this.score = 2 }
+        else if (probability <= 96) { this.score = 3 }
+        else if (probability <= 98) { this.score = 4 }
+        else if (probability <= 99) { this.score = 6 }
+        else { this.score = 7 }
+        this.updateScoreBoard(this.score);
+        break;
+      case 'mid':
+        if (probability <= 33) { this.score = 0 }
+        else if (probability <= 68) { this.score = 1 }
+        else if (probability <= 80) { this.score = 2 }
+        else if (probability <= 82) { this.score = 3 }
+        else if (probability <= 90) { this.score = 4 }
+        else if (probability <= 96) { this.score = 6 }
+        else { this.score = 7 }
+        this.updateScoreBoard(this.score);
+        break;
+      case 'high':
+        if (probability <= 14) { this.score = 0 }
+        else if (probability <= 18) { this.score = 1 }
+        else if (probability <= 27) { this.score = 2 }
+        else if (probability <= 31) { this.score = 3 }
+        else if (probability <= 66) { this.score = 4 }
+        else if (probability <= 90) { this.score = 6 }
+        else { this.score = 7 }
+        this.updateScoreBoard(this.score);
+        break;
+      default:
+        break;
+    }
   }
 
   updateScoreBoard(score: number) {
@@ -59,17 +94,19 @@ export class DataService {
       overs: this.overs,
       balls: this.balls
     }
-    this.commentaryObj.push({
-      overs: this.overs,
-      runs: score < 7 ? score.toString(10) : 'W'
-    });
     if (this.wickets === 10) {
       this._gameOver.next(true);
     }
     this._scoreBoardSub.next(Object.assign({}, this.scoreboardObj));
-    if (this.balls != 0 || this.overs != 0) {
-      this._commentarySub.next(this.commentaryObj);
-    }
+    this.updateCommentary(score);
+  }
+
+  updateCommentary(score: number): void {
+    this.commentaryObj.push({
+      overs: this.overs,
+      runs: score < 7 ? score.toString(10) : 'W'
+    });
+    this._commentarySub.next(this.commentaryObj);
   }
 
   getPartnershipCard(): Partnership[] {
@@ -82,15 +119,11 @@ export class DataService {
       }]
       return scorecardObjCopy
     }
-
-    else if (this.wickets + 1 === this.partnershipObj.slice(-1)[0].partnershipNumber) {
-      this.partnershipObj.push(...this.partnershipObj, ...scorecardObjCopy);
-    }
     return this.partnershipObj
   }
 
-  getCurrentPartnerShip(): Partnership[] {
-    let scorecardObjCopy: Partnership[]
+  getCurrentPartnership(): Partnership[] {
+    let scorecardObjCopy: Partnership[] = []
     if (this.wickets > 0 && this.wickets < 10) {
       if (this.wickets === this.partnershipObj.slice(-1)[0].partnershipNumber) {
         scorecardObjCopy = [{
