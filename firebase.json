@@ -1,20 +1,6 @@
 {
   "hosting": [
     {
-      "public": "dist/bookCricket",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    },
-    {
       "target": "bookCricket",
       "public": "dist/bookCricket",
       "ignore": [
