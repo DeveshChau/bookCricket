@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, HostListener } from '@angular/core';
 import { DataService } from './shared/service/data.service';
 
 @Component({
@@ -8,4 +8,10 @@ import { DataService } from './shared/service/data.service';
 })
 export class AppComponent {
   title = 'bookCricket';
+
+  @HostListener('window:beforeunload', ['$event'])
+  doSomething($event) {
+    if(true) $event.returnValue='Your data will be lost!';
+  }
+
 }

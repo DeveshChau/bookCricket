@@ -10,6 +10,7 @@ import { RiskSelectionComponent } from './risk-selection/risk-selection.componen
 import { PartnershipComponent } from './partnership/partnership.component';
 import { HomeComponent } from './home/home.component';
 import { environment } from 'src/environments/environment';
+import { BattingScorecardComponent } from './batting-scorecard/batting-scorecard.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { environment } from 'src/environments/environment';
     OverDescriptionComponent,
     RiskSelectionComponent,
     PartnershipComponent,
-    HomeComponent
+    HomeComponent,
+    BattingScorecardComponent
   ],
   imports: [
     BrowserModule,

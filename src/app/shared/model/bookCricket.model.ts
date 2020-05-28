@@ -14,3 +14,10 @@ export interface Partnership {
     runsScored: number;
     ballsFaced: number;
 }
+
+export interface BattingScorecard {
+    name: string;
+    runs: number;
+    balls: number;
+    position: number;
+}
