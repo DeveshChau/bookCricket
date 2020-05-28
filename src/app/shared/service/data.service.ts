@@ -99,6 +99,8 @@ export class DataService {
   readonly scoreBoardSub = this._scoreBoardSub.asObservable();
   private _commentarySub = new BehaviorSubject<Commentary[]>([]);
   readonly commentarySub = this._commentarySub.asObservable();
+  private _currentPairSub = new BehaviorSubject<BattingScorecard[]>(this.currentPair);
+  readonly currentPairSub = this._currentPairSub.asObservable();
   constructor() { }
 
   generateScore(risk: string) {
@@ -173,7 +175,7 @@ export class DataService {
       overs: this.overs,
       balls: this.balls
     }
-    if (this.wickets === 3) {
+    if (this.wickets === 10) {
       this._gameOver.next(true);
     }
     this._scoreBoardSub.next(Object.assign({}, this.scoreboardObj));
@@ -215,8 +217,8 @@ export class DataService {
     }
   }
 
-  getBattingscoreCard(): BattingScorecard[] {
-    return this.currentPair;
+  getBattingscoreCard() {
+    return this.display
   }
 
   updateBattingScorecard() {
@@ -224,7 +226,6 @@ export class DataService {
       this.currentPair = this.batsmanLineup.splice(0, 2);
       this.striker = this.currentPair[0];
       this.nonStriker = this.currentPair[1];
-      this.batsmanLineup;
     }
     let temp: BattingScorecard;
     switch (this.score) {
@@ -240,7 +241,6 @@ export class DataService {
       case 2:
         this.striker.runs = this.striker.runs + 2;
         this.striker.balls = this.striker.balls + 1;
-        this.batsmanLineup[0] = this.striker;
         break;
       case 3:
         this.striker.runs = this.striker.runs + 3;
@@ -281,5 +281,8 @@ export class DataService {
         this.striker.balls = this.striker.balls + 1;
         break;
     }
+    this._currentPairSub.next(this.currentPair)
+    this.display[this.currentPair[0].position] = this.currentPair[0]
+    this.display[this.currentPair[1].position] = this.currentPair[1]
   }
 }

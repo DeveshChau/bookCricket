@@ -8,11 +8,16 @@ import { BattingScorecard } from '../shared/model/bookCricket.model';
   styleUrls: ['./batting-scorecard.component.css']
 })
 export class BattingScorecardComponent implements OnInit {
-  public battingScorecard: BattingScorecard[] = []
-  constructor(private _dataService: DataService) { }
+  battingScorecard: BattingScorecard[];
+  currentBattingScorecard: BattingScorecard[];
+  constructor(private _dataService: DataService) { 
+    this._dataService.currentPairSub.subscribe(res => {
+      this.currentBattingScorecard = res
+    })
+  }
 
   ngOnInit(): void {
-    this.battingScorecard = this._dataService.getBattingscoreCard();
+    this. battingScorecard = this._dataService.getBattingscoreCard()
   }
 
 }

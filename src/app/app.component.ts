@@ -11,7 +11,7 @@ export class AppComponent {
 
   @HostListener('window:beforeunload', ['$event'])
   doSomething($event) {
-    if(true) $event.returnValue='Your data will be lost!';
+    $event.returnValue='Your data will be lost!';
   }
 
 }
