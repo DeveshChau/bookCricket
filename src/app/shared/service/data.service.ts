@@ -8,67 +8,67 @@ import { ScoreBoard, Commentary, Partnership, BattingScorecard } from '../model/
 export class DataService {
   battingTeam: BattingScorecard[] = [
     {
-      name: 'batsman1',
+      name: 'V Sehwag',
       runs: 0,
       balls: 0,
       position: 0
     },
     {
-      name: 'batsman2',
+      name: 'SR Tendulkar',
       runs: 0,
       balls: 0,
       position: 1,
     },
     {
-      name: 'batsman3',
+      name: 'G Gambhir',
       runs: 0,
       balls: 0,
       position: 2
     },
     {
-      name: 'batsman4',
+      name: 'V Kohli',
       runs: 0,
       balls: 0,
       position: 3
     },
     {
-      name: 'batsman5',
+      name: 'MS Dhoni (c) †',
       runs: 0,
       balls: 0,
       position: 4
     },
     {
-      name: 'batsman6',
+      name: 'Yuvraj Singh',
       runs: 0,
       balls: 0,
       position: 5
     },
     {
-      name: 'batsman7',
+      name: 'SK Raina',
       runs: 0,
       balls: 0,
       position: 6
     },
     {
-      name: 'batsman8',
+      name: 'Harbhajan Singh',
       runs: 0,
       balls: 0,
       position: 7
     },
     {
-      name: 'batsman9',
+      name: 'Z Khan',
       runs: 0,
       balls: 0,
       position: 8
     },
     {
-      name: 'batsman10',
+      name: 'MM Patel',
       runs: 0,
       balls: 0,
       position: 9
     },
     {
-      name: 'batsman11',
+      name: 'S Sreesanth',
       runs: 0,
       balls: 0,
       position: 10
