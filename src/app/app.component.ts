@@ -10,8 +10,8 @@ export class AppComponent {
   title = 'bookCricket';
 
   @HostListener('window:beforeunload', ['$event'])
-  doSomething($event) {
-    $event.returnValue='Your data will be lost!';
+  doSomething($event: any) {
+    $event.returnValue = 'Your data will be lost!';
   }
 
 }

@@ -10,15 +10,15 @@ import { Commentary } from '../shared/model/bookCricket.model';
 export class OverDescriptionComponent implements OnInit {
   overDescription: Commentary[];
   constructor(
-    private _dataService: DataService
+    private dataService: DataService
   ) {
 
   }
   ngOnInit(): void {
-    this._dataService.commentarySub
+    this.dataService.commentaryObs
       .subscribe(res => {
         this.overDescription = res;
-      })
+      });
   }
 
 }

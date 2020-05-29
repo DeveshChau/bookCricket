@@ -11,15 +11,15 @@ export class HomeComponent implements OnInit {
 
   public gameOver: boolean;
   public showMsg: string;
-  public currentBattingScorecard:BattingScorecard[];
-  constructor(private _dataService: DataService) {
-    this._dataService.gameOver.subscribe((res: boolean) => {
+  public currentBattingScorecard: BattingScorecard[];
+  constructor(private dataService: DataService) {
+    this.dataService.gameOverObs.subscribe((res: boolean) => {
       this.gameOver = res;
       this.showMsg = 'Game Over: Refresh Your Browser To Restart';
-    })
-    this._dataService.currentPairSub.subscribe(res => {
-      this.currentBattingScorecard = res
-    })
+    });
+    this.dataService.currentPairObs.subscribe(res => {
+      this.currentBattingScorecard = res;
+    });
   }
   ngOnInit(): void {
   }

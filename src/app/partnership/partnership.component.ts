@@ -11,11 +11,11 @@ export class PartnershipComponent implements OnInit {
 
   partnershipCard: Partnership[] = [];
   currentPartnershipCard: Partnership[] = [];
-  constructor(private _dataService: DataService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.partnershipCard = this._dataService.getPartnerships();   
-    this.currentPartnershipCard = this._dataService.getCurrentPartnership()
+    this.partnershipCard = this.dataService.getPartnerships();
+    this.currentPartnershipCard = this.dataService.getCurrentPartnership();
   }
 
 }

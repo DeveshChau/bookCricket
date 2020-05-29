@@ -73,7 +73,7 @@ export class DataService {
       balls: 0,
       position: 10
     },
-  ]
+  ];
   battingLineup: BattingScorecard[] = [...this.battingTeam];
   currentPair: BattingScorecard[] = this.battingTeam.splice(0, 2);
   striker: BattingScorecard = this.currentPair[0];
@@ -83,71 +83,71 @@ export class DataService {
     wickets: 0,
     overs: 0,
     balls: 0
-  }
+  };
   commentaryObj: Commentary[] = [];
-  partnershipObj: Partnership[] = []
-  public score: number = 0;
-  public runs: number = 0;
-  public wickets: number = 0;
-  public overs: number = 0;
-  public balls: number = 0;
-  public ballsFaced: number = 0;
-  public runsScored: number = 0;
-  private _gameOver = new BehaviorSubject<boolean>(false);
-  readonly gameOver = this._gameOver.asObservable();
-  private _scoreBoardSub = new BehaviorSubject<ScoreBoard>(this.scoreboardObj);
-  readonly scoreBoardSub = this._scoreBoardSub.asObservable();
-  private _commentarySub = new BehaviorSubject<Commentary[]>([]);
-  readonly commentarySub = this._commentarySub.asObservable();
-  private _currentPairSub = new BehaviorSubject<BattingScorecard[]>(this.currentPair);
-  readonly currentPairSub = this._currentPairSub.asObservable();
+  partnershipObj: Partnership[] = [];
+  public score = 0;
+  public runs = 0;
+  public wickets = 0;
+  public overs = 0;
+  public balls = 0;
+  public ballsFaced = 0;
+  public runsScored = 0;
+  private gameOver = new BehaviorSubject<boolean>(false);
+  readonly gameOverObs = this.gameOver.asObservable();
+  private scoreBoardSub = new BehaviorSubject<ScoreBoard>(this.scoreboardObj);
+  readonly scoreBoardObs = this.scoreBoardSub.asObservable();
+  private commentarySub = new BehaviorSubject<Commentary[]>([]);
+  readonly commentaryObs = this.commentarySub.asObservable();
+  private currentPairSub = new BehaviorSubject<BattingScorecard[]>(this.currentPair);
+  readonly currentPairObs = this.currentPairSub.asObservable();
   constructor() { }
 
   generateScore(risk: string) {
-    //The maximum is inclusive and the minimum is inclusive 
+    // The maximum is inclusive and the minimum is inclusive
     const probability = Math.floor(Math.random() * 101);
     switch (risk) {
       case 'low':
-        if (probability <= 50) { this.score = 0 }
-        else if (probability <= 80) { this.score = 1 }
-        else if (probability <= 95) { this.score = 2 }
-        else if (probability <= 96) { this.score = 3 }
-        else if (probability <= 98) { this.score = 4 }
-        else if (probability <= 99) { this.score = 6 }
-        else { this.score = 7 }
-        this.updateScoreBoard(this.score);
+        if (probability <= 50) { this.score = 0; }
+        else if (probability <= 80) { this.score = 1; }
+        else if (probability <= 95) { this.score = 2; }
+        else if (probability <= 96) { this.score = 3; }
+        else if (probability <= 98) { this.score = 4; }
+        else if (probability <= 99) { this.score = 6; }
+        else { this.score = 7; }
+        this.updateScoreBoard();
         break;
       case 'mid':
-        if (probability <= 33) { this.score = 0 }
-        else if (probability <= 68) { this.score = 1 }
-        else if (probability <= 80) { this.score = 2 }
-        else if (probability <= 82) { this.score = 3 }
-        else if (probability <= 90) { this.score = 4 }
-        else if (probability <= 96) { this.score = 6 }
-        else { this.score = 7 }
-        this.updateScoreBoard(this.score);
+        if (probability <= 33) { this.score = 0; }
+        else if (probability <= 68) { this.score = 1; }
+        else if (probability <= 80) { this.score = 2; }
+        else if (probability <= 82) { this.score = 3; }
+        else if (probability <= 90) { this.score = 4; }
+        else if (probability <= 96) { this.score = 6; }
+        else { this.score = 7; }
+        this.updateScoreBoard();
         break;
       case 'high':
-        if (probability <= 14) { this.score = 0 }
-        else if (probability <= 18) { this.score = 1 }
-        else if (probability <= 27) { this.score = 2 }
-        else if (probability <= 31) { this.score = 3 }
-        else if (probability <= 66) { this.score = 4 }
-        else if (probability <= 90) { this.score = 6 }
-        else { this.score = 7 }
-        this.updateScoreBoard(this.score);
+        if (probability <= 14) { this.score = 0; }
+        else if (probability <= 18) { this.score = 1; }
+        else if (probability <= 27) { this.score = 2; }
+        else if (probability <= 31) { this.score = 3; }
+        else if (probability <= 66) { this.score = 4; }
+        else if (probability <= 90) { this.score = 6; }
+        else { this.score = 7; }
+        this.updateScoreBoard();
         break;
       default:
         break;
     }
   }
 
-  updateScoreBoard(score: number) {
+  updateScoreBoard() {
     this.balls = this.balls + 1;
     this.ballsFaced = this.ballsFaced + 1;
-    if (score < 7) {
-      this.runs += score;
-      this.runsScored += score;
+    if (this.score < 7) {
+      this.runs += this.score;
+      this.runsScored += this.score;
       this.updateBattingScorecard();
     } else {
       this.updateBattingScorecard();
@@ -162,8 +162,8 @@ export class DataService {
     }
     if (this.balls === 6) {
       this.balls = 0;
-      this.overs = this.overs + 1
-      if (score != 1 && score != 3) {
+      this.overs += 1;
+      if (this.score !== 1 && this.score !== 3) {
         this.strikeChange();
       }
     }
@@ -172,20 +172,20 @@ export class DataService {
       wickets: this.wickets,
       overs: this.overs,
       balls: this.balls
-    }
+    };
     if (this.wickets === 10) {
-      this._gameOver.next(true);
+      this.gameOver.next(true);
     }
-    this._scoreBoardSub.next(Object.assign({}, this.scoreboardObj));
-    this.updateCommentary(score);
+    this.scoreBoardSub.next(Object.assign({}, this.scoreboardObj));
+    this.updateCommentary();
   }
 
-  updateCommentary(score: number): void {
+  updateCommentary(): void {
     this.commentaryObj.push({
       overs: this.overs,
-      runs: score < 7 ? score.toString(10) : 'W'
+      runs: this.score < 7 ? this.score.toString(10) : 'W'
     });
-    this._commentarySub.next(this.commentaryObj);
+    this.commentarySub.next(this.commentaryObj);
   }
 
   getPartnerships(): Partnership[] {
@@ -195,28 +195,28 @@ export class DataService {
         partnershipNumber: 1,
         runsScored: this.runs,
         ballsFaced: this.ballsFaced
-      }]
-      return scorecardObjCopy
+      }];
+      return scorecardObjCopy;
     }
-    return this.partnershipObj
+    return this.partnershipObj;
   }
 
   getCurrentPartnership(): Partnership[] {
-    let scorecardObjCopy: Partnership[] = []
+    let scorecardObjCopy: Partnership[] = [];
     if (this.wickets > 0 && this.wickets < 10) {
       if (this.wickets === this.partnershipObj.slice(-1)[0].partnershipNumber) {
         scorecardObjCopy = [{
           partnershipNumber: this.wickets + 1,
           runsScored: this.runsScored,
           ballsFaced: this.ballsFaced
-        }]
+        }];
         return scorecardObjCopy;
       }
     }
   }
 
   getBattingScoreCard() {
-    return this.battingLineup
+    return this.battingLineup;
   }
 
   updateBattingScorecard() {
@@ -224,7 +224,7 @@ export class DataService {
       case 1:
         this.striker.runs += 1;
         this.striker.balls += 1;
-        if (this.balls != 6) {
+        if (this.balls !== 6) {
           this.strikeChange();
         }
         break;
@@ -235,8 +235,8 @@ export class DataService {
       case 3:
         this.striker.runs += 3;
         this.striker.balls += 1;
-        if (this.balls != 6) {
-         this.strikeChange();
+        if (this.balls !== 6) {
+          this.strikeChange();
         }
         break;
       case 4:
@@ -251,12 +251,12 @@ export class DataService {
         this.striker.runs = this.striker.runs;
         this.striker.balls += 1;
         if (this.striker.name === this.currentPair[0].name) {
-          this.currentPair.splice(0, 1)
+          this.currentPair.splice(0, 1);
         } else {
-          this.currentPair.splice(1, 1)
+          this.currentPair.splice(1, 1);
         }
-        this.currentPair.push(this.battingTeam.shift())
-        if (this.balls != 6) {
+        this.currentPair.push(this.battingTeam.shift());
+        if (this.balls !== 6) {
           this.striker = this.currentPair[1];
           this.nonStriker = this.currentPair[0];
         } else {
@@ -268,9 +268,9 @@ export class DataService {
         this.striker.balls += 1;
         break;
     }
-    this._currentPairSub.next(this.currentPair)
-    this.battingLineup[this.currentPair[0].position] = this.currentPair[0]
-    this.battingLineup[this.currentPair[1].position] = this.currentPair[1]
+    this.currentPairSub.next(this.currentPair);
+    this.battingLineup[this.currentPair[0].position] = this.currentPair[0];
+    this.battingLineup[this.currentPair[1].position] = this.currentPair[1];
   }
 
   private strikeChange() {

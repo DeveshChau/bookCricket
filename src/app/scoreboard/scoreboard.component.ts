@@ -10,11 +10,11 @@ import { ScoreBoard } from '../shared/model/bookCricket.model';
 export class ScoreboardComponent implements OnInit {
   scoreBoard: ScoreBoard;
   constructor(
-    private _dataService: DataService
+    private dataService: DataService
   ) {
-    this._dataService.scoreBoardSub.subscribe(res => {
+    this.dataService.scoreBoardObs.subscribe(res => {
       this.scoreBoard = res;
-    })
+    });
   }
 
   ngOnInit(): void {

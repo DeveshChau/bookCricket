@@ -7,20 +7,20 @@ import { DataService } from '../shared/service/data.service';
   styleUrls: ['./risk-selection.component.css']
 })
 export class RiskSelectionComponent implements OnInit {
-  gameOver: boolean = false;
+  gameOver = false;
   constructor(
-    private _dataService: DataService
-  ) { 
-    this._dataService.gameOver.subscribe((res: boolean) => {
+    private dataService: DataService
+  ) {
+    this.dataService.gameOverObs.subscribe((res: boolean) => {
       this.gameOver = res;
-    })
+    });
   }
 
   ngOnInit(): void {
   }
 
   onRiskSelection(risk: string) {
-    this._dataService.generateScore(risk);
+    this.dataService.generateScore(risk);
   }
 
 }

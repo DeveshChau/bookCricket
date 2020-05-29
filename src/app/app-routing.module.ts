@@ -6,11 +6,11 @@ import { BattingScorecardComponent } from './batting-scorecard/batting-scorecard
 
 
 const routes: Routes = [
-  {path: "home", component: HomeComponent},
-  {path: "partnership", component: PartnershipComponent},
-  {path: "battingScorecard", component: BattingScorecardComponent},
-  {path: "", component: HomeComponent},
-  {path: "**", component: HomeComponent}
+  {path: 'home', component: HomeComponent},
+  {path: 'partnership', component: PartnershipComponent},
+  {path: 'battingScorecard', component: BattingScorecardComponent},
+  {path: '', component: HomeComponent},
+  {path: '**', component: HomeComponent}
 ];
 
 @NgModule({
