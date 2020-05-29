@@ -164,7 +164,7 @@ export class DataService {
       this.balls = 0;
       this.overs = this.overs + 1
       if (score != 1 && score != 3) {
-        this.swapBatsman();
+        this.strikeChange();
       }
     }
     this.scoreboardObj = {
@@ -188,7 +188,7 @@ export class DataService {
     this._commentarySub.next(this.commentaryObj);
   }
 
-  getPartnershipCard(): Partnership[] {
+  getPartnerships(): Partnership[] {
     let scorecardObjCopy: Partnership[] = [];
     if (this.wickets === 0) {
       scorecardObjCopy = [{
@@ -215,7 +215,7 @@ export class DataService {
     }
   }
 
-  getBattingscoreCard() {
+  getBattingScoreCard() {
     return this.battingLineup
   }
 
@@ -225,7 +225,7 @@ export class DataService {
         this.striker.runs += 1;
         this.striker.balls += 1;
         if (this.balls != 6) {
-          this.swapBatsman();
+          this.strikeChange();
         }
         break;
       case 2:
@@ -236,7 +236,7 @@ export class DataService {
         this.striker.runs += 3;
         this.striker.balls += 1;
         if (this.balls != 6) {
-         this.swapBatsman();
+         this.strikeChange();
         }
         break;
       case 4:
@@ -273,7 +273,7 @@ export class DataService {
     this.battingLineup[this.currentPair[1].position] = this.currentPair[1]
   }
 
-  private swapBatsman() {
+  private strikeChange() {
     const swapVariable = this.striker;
     this.striker = this.nonStriker;
     this.nonStriker = swapVariable;

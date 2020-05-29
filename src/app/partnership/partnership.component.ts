@@ -14,7 +14,7 @@ export class PartnershipComponent implements OnInit {
   constructor(private _dataService: DataService) { }
 
   ngOnInit(): void {
-    this.partnershipCard = this._dataService.getPartnershipCard();   
+    this.partnershipCard = this._dataService.getPartnerships();   
     this.currentPartnershipCard = this._dataService.getCurrentPartnership()
   }
 

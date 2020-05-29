@@ -17,7 +17,7 @@ export class BattingScorecardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this. battingScorecard = this._dataService.getBattingscoreCard()
+    this.battingScorecard = this._dataService.getBattingScoreCard()
   }
 
 }
