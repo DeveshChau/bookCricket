@@ -6,7 +6,7 @@ import { ScoreBoard, Commentary, Partnership, BattingScorecard } from '../model/
   providedIn: 'root'
 })
 export class DataService {
-  batsmanLineup: BattingScorecard[] = [
+  battingTeam: BattingScorecard[] = [
     {
       name: 'batsman1',
       runs: 0,
@@ -74,10 +74,10 @@ export class DataService {
       position: 10
     },
   ]
-  currentPair: BattingScorecard[] = [];
-  display: BattingScorecard[] = [...this.batsmanLineup];
-  striker: BattingScorecard;
-  nonStriker: BattingScorecard;
+  battingLineup: BattingScorecard[] = [...this.battingTeam];
+  currentPair: BattingScorecard[] = this.battingTeam.splice(0, 2);
+  striker: BattingScorecard = this.currentPair[0];
+  nonStriker: BattingScorecard = this.currentPair[1];
   scoreboardObj = {
     runs: 0,
     wickets: 0,
@@ -164,9 +164,7 @@ export class DataService {
       this.balls = 0;
       this.overs = this.overs + 1
       if (score != 1 && score != 3) {
-        const temp = this.striker;
-        this.striker = this.nonStriker;
-        this.nonStriker = temp;
+        this.swapBatsman();
       }
     }
     this.scoreboardObj = {
@@ -218,57 +216,46 @@ export class DataService {
   }
 
   getBattingscoreCard() {
-    return this.display
+    return this.battingLineup
   }
 
   updateBattingScorecard() {
-    if (this.overs === 0 && this.balls === 1) {
-      this.currentPair = this.batsmanLineup.splice(0, 2);
-      this.striker = this.currentPair[0];
-      this.nonStriker = this.currentPair[1];
-    }
-    let temp: BattingScorecard;
     switch (this.score) {
       case 1:
-        this.striker.runs = this.striker.runs + 1;
-        this.striker.balls = this.striker.balls + 1;
+        this.striker.runs += 1;
+        this.striker.balls += 1;
         if (this.balls != 6) {
-          temp = this.striker;
-          this.striker = this.nonStriker;
-          this.nonStriker = temp;
+          this.swapBatsman();
         }
         break;
       case 2:
-        this.striker.runs = this.striker.runs + 2;
-        this.striker.balls = this.striker.balls + 1;
+        this.striker.runs += 2;
+        this.striker.balls += 1;
         break;
       case 3:
-        this.striker.runs = this.striker.runs + 3;
-        this.striker.balls = this.striker.balls + 1;
+        this.striker.runs += 3;
+        this.striker.balls += 1;
         if (this.balls != 6) {
-          temp = this.striker;
-          this.striker = this.nonStriker;
-          this.nonStriker = temp;
+         this.swapBatsman();
         }
         break;
       case 4:
-        this.striker.runs = this.striker.runs + 4;
-        this.striker.balls = this.striker.balls + 1;
+        this.striker.runs += 4;
+        this.striker.balls += 1;
         break;
       case 6:
-        this.striker.runs = this.striker.runs + 6;
-        this.striker.balls = this.striker.balls + 1;
+        this.striker.runs += 6;
+        this.striker.balls += 1;
         break;
       case 7:
         this.striker.runs = this.striker.runs;
-        this.striker.balls = this.striker.balls + 1;
+        this.striker.balls += 1;
         if (this.striker.name === this.currentPair[0].name) {
           this.currentPair.splice(0, 1)
         } else {
           this.currentPair.splice(1, 1)
         }
-        let ddd = this.batsmanLineup.shift()
-        this.currentPair.push(ddd)
+        this.currentPair.push(this.battingTeam.shift())
         if (this.balls != 6) {
           this.striker = this.currentPair[1];
           this.nonStriker = this.currentPair[0];
@@ -278,11 +265,17 @@ export class DataService {
         }
         break;
       default:
-        this.striker.balls = this.striker.balls + 1;
+        this.striker.balls += 1;
         break;
     }
     this._currentPairSub.next(this.currentPair)
-    this.display[this.currentPair[0].position] = this.currentPair[0]
-    this.display[this.currentPair[1].position] = this.currentPair[1]
+    this.battingLineup[this.currentPair[0].position] = this.currentPair[0]
+    this.battingLineup[this.currentPair[1].position] = this.currentPair[1]
+  }
+
+  private swapBatsman() {
+    const swapVariable = this.striker;
+    this.striker = this.nonStriker;
+    this.nonStriker = swapVariable;
   }
 }
