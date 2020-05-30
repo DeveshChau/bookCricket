@@ -148,17 +148,21 @@ export class DataService {
     if (this.score < 7) {
       this.runs += this.score;
       this.runsScored += this.score;
-      this.updateStrikerScorecard();
     } else {
-      this.updateStrikerScorecard();
       this.wickets = this.wickets + 1;
       this.partnershipObj.push({
         partnershipNumber: this.wickets,
         runsScored: this.runsScored,
         ballsFaced: this.ballsFaced
       });
-      this.ballsFaced = 0;
       this.runsScored = 0;
+      this.ballsFaced = 0;
+    }
+    if (this.wickets === 10) {
+      this.striker.balls += 1;
+      this.gameOver.next(true);
+    } else {
+      this.updateStrikerScorecard();
     }
     if (this.balls === 6) {
       this.balls = 0;
@@ -173,9 +177,6 @@ export class DataService {
       overs: this.overs,
       balls: this.balls
     };
-    if (this.wickets === 10) {
-      this.gameOver.next(true);
-    }
     this.scoreBoardSub.next(Object.assign({}, this.scoreboardObj));
     this.updateCommentary();
   }
