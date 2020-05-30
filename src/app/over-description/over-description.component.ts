@@ -19,7 +19,7 @@ export class OverDescriptionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.dataService.commentaryObs
       .subscribe(res => {
-        this.overDescription = res.slice(-10);
+        this.overDescription = res.slice(-10).reverse();
       });
   }
 
