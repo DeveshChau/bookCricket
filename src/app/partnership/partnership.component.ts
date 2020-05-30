@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/service/data.service';
 import { Partnership } from '../shared/model/bookCricket.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-partnership',
@@ -17,5 +18,4 @@ export class PartnershipComponent implements OnInit {
     this.partnershipCard = this.dataService.getPartnerships();
     this.currentPartnershipCard = this.dataService.getCurrentPartnership();
   }
-
 }

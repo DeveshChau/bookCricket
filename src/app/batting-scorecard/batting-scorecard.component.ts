@@ -8,6 +8,7 @@ import { BattingScorecard } from '../shared/model/bookCricket.model';
   styleUrls: ['./batting-scorecard.component.css']
 })
 export class BattingScorecardComponent implements OnInit {
+
   battingScorecard: BattingScorecard[];
   currentBattingScorecard: BattingScorecard[];
   constructor(private dataService: DataService) {
