@@ -148,9 +148,9 @@ export class DataService {
     if (this.score < 7) {
       this.runs += this.score;
       this.runsScored += this.score;
-      this.updateBattingScorecard();
+      this.updateStrikerScorecard();
     } else {
-      this.updateBattingScorecard();
+      this.updateStrikerScorecard();
       this.wickets = this.wickets + 1;
       this.partnershipObj.push({
         partnershipNumber: this.wickets,
@@ -219,7 +219,7 @@ export class DataService {
     return this.battingLineup;
   }
 
-  updateBattingScorecard() {
+  private updateStrikerScorecard() {
     switch (this.score) {
       case 1:
         this.striker.runs += 1;
@@ -248,7 +248,6 @@ export class DataService {
         this.striker.balls += 1;
         break;
       case 7:
-        this.striker.runs = this.striker.runs;
         this.striker.balls += 1;
         if (this.striker.name === this.currentPair[0].name) {
           this.currentPair.splice(0, 1);

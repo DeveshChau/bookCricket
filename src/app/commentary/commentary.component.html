@@ -1,0 +1,8 @@
+<div>
+    <span *ngFor="let item of overDescription; let i = index">
+        {{item.runs }}
+        <span *ngIf="!((i+1)%6)">
+            **** over {{item.overs}} <br>
+        </span>
+    </span>
+</div>
