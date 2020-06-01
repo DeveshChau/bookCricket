@@ -1,28 +1,31 @@
-<h2>Current Batting Pair</h2>
-<p *ngFor="let item of currentBattingScorecard">{{item.name}}: {{item.runs}}({{item.balls}}) </p>
-<p>------------------</p>
-<h2>Scorecard</h2>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Runs</th>
-        <th>Balls</th>
-        <th>0</th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>6</th>
-    </tr>
-    <tr *ngFor="let item of battingScorecard">
-        <td>{{item.name}}</td>
-        <td>{{item.runs}}</td>
-        <td>{{item.balls}}</td>
-        <td>{{item[0]}}</td>
-        <td>{{item[1]}}</td>
-        <td>{{item[2]}}</td>
-        <td>{{item[3]}}</td>
-        <td>{{item[4]}}</td>
-        <td>{{item[6]}}</td>
-    </tr>
-</table>
+<mat-card>
+    <h2>Current Batting Pair</h2>
+    <p *ngFor="let item of currentBattingScorecard">{{item.name}}: {{item.runs}}({{item.balls}}) </p>
+</mat-card>
+<mat-card>
+    <h2>Scorecard</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Runs</th>
+            <th>Balls</th>
+            <th>0</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>6</th>
+        </tr>
+        <tr *ngFor="let item of battingScorecard">
+            <td>{{item.name}}</td>
+            <td>{{item.runs}}</td>
+            <td>{{item.balls}}</td>
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[3]}}</td>
+            <td>{{item[4]}}</td>
+            <td>{{item[6]}}</td>
+        </tr>
+    </table>
+</mat-card>

@@ -1,5 +1,39 @@
-<div><a routerLink='home'>Home</a></div>
-<div><a routerLink='partnership'>Partnership</a></div>
-<div><a routerLink='battingScorecard'>Scorecard</a></div>
-<div><a routerLink='commentary'>Commentary</a></div>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+    <mat-sidenav role="navigation" #sidenav>
+        <mat-nav-list>
+            <a mat-list-item routerLink='home' (click)="sidenav.close()">Home</a>
+            <a mat-list-item routerLink='battingScorecard' (click)="sidenav.close()">Scorecard</a>
+            <a mat-list-item routerLink='partnership' (click)="sidenav.close()">Partnership</a>
+            <a mat-list-item routerLink='commentary' (click)="sidenav.close()">Commentary</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <div fxHide.gt-xs>
+                <button mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div><a routerLink='home'>Book Cricket</a></div>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <ul fxLayout fxLayoutGap="10px" class="navigation-item">
+                    <li>
+                        <a routerLink='home'>Home</a>
+                    </li>
+                    <li>
+                        <a routerLink='battingScorecard'>Scorecard</a>
+                    </li>
+                    <li>
+                        <a routerLink='partnership'>Partnership</a>
+                    </li>
+                    <li>
+                        <a routerLink='commentary'>Commentary</a>
+                    </li>
+                </ul>
+            </div>
+        </mat-toolbar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

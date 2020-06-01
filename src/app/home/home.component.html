@@ -1,11 +1,17 @@
 <div *ngIf="gameOver">
     {{showMsg}}
 </div>
-<app-scoreboard></app-scoreboard>
+<mat-card>
+    <app-scoreboard></app-scoreboard>
+</mat-card>
+<mat-card>
 <app-risk-selection></app-risk-selection>
-<p>------------------</p>
+</mat-card>
+<mat-card>
 <h2>Current Batting Pair</h2>
 <p *ngFor="let item of currentBattingScorecard">{{item.name}}: {{item.runs}}({{item.balls}}) </p>
-<p>------------------</p>
+</mat-card>
+<mat-card>
 <h2>Last 10 balls</h2>
 <app-over-description></app-over-description>
+</mat-card>
