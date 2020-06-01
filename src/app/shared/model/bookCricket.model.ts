@@ -20,4 +20,10 @@ export interface BattingScorecard {
     runs: number;
     balls: number;
     position: number;
+    0: number;
+    1: number;
+    2: number;
+    3: number;
+    4: number;
+    6: number;
 }

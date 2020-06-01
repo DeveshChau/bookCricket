@@ -2,7 +2,11 @@
     <table>
         <tr>
             <td *ngFor="let item of overDescription">
-                {{item.runs}}
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip color="primary" selected>
+                        {{item.runs}}
+                    </mat-chip>
+                </mat-chip-list>
             </td>
         </tr>
     </table>

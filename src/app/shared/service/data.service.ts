@@ -8,70 +8,137 @@ import { ScoreBoard, Commentary, Partnership, BattingScorecard } from '../model/
 export class DataService {
   battingTeam: BattingScorecard[] = [
     {
-      name: 'V Sehwag',
+      name: 'batsman1',
       runs: 0,
       balls: 0,
-      position: 0
+      position: 0,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
+
     },
     {
-      name: 'SR Tendulkar',
+      name: 'batsman2',
       runs: 0,
       balls: 0,
       position: 1,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'G Gambhir',
+      name: 'batsman3',
       runs: 0,
       balls: 0,
-      position: 2
+      position: 2,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'V Kohli',
+      name: 'batsman4',
       runs: 0,
       balls: 0,
-      position: 3
+      position: 3,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'MS Dhoni (c) †',
+      name: 'batsman5',
       runs: 0,
       balls: 0,
-      position: 4
+      position: 4,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'Yuvraj Singh',
+      name: 'batsman6',
       runs: 0,
       balls: 0,
-      position: 5
+      position: 5,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'SK Raina',
+      name: 'batsman7',
       runs: 0,
       balls: 0,
-      position: 6
+      position: 6,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'Harbhajan Singh',
+      name: 'batsman8',
       runs: 0,
       balls: 0,
-      position: 7
+      position: 7,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'Z Khan',
+      name: 'batsman9',
       runs: 0,
       balls: 0,
-      position: 8
+      position: 8,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'MM Patel',
+      name: 'batsman10',
       runs: 0,
       balls: 0,
-      position: 9
+      position: 9,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
     {
-      name: 'S Sreesanth',
+      name: 'batsman11',
       runs: 0,
       balls: 0,
-      position: 10
+      position: 10,
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      6: 0
     },
   ];
   battingLineup: BattingScorecard[] = [...this.battingTeam];
@@ -225,6 +292,7 @@ export class DataService {
       case 1:
         this.striker.runs += 1;
         this.striker.balls += 1;
+        this.striker[1] += 1;
         if (this.balls !== 6) {
           this.strikeChange();
         }
@@ -232,10 +300,12 @@ export class DataService {
       case 2:
         this.striker.runs += 2;
         this.striker.balls += 1;
+        this.striker[2] += 1;
         break;
       case 3:
         this.striker.runs += 3;
         this.striker.balls += 1;
+        this.striker[3] += 1;
         if (this.balls !== 6) {
           this.strikeChange();
         }
@@ -243,10 +313,12 @@ export class DataService {
       case 4:
         this.striker.runs += 4;
         this.striker.balls += 1;
+        this.striker[4] += 1;
         break;
       case 6:
         this.striker.runs += 6;
         this.striker.balls += 1;
+        this.striker[6] += 1;
         break;
       case 7:
         this.striker.balls += 1;
@@ -266,6 +338,7 @@ export class DataService {
         break;
       default:
         this.striker.balls += 1;
+        this.striker[0] += 1;
         break;
     }
     this.currentPairSub.next(this.currentPair);

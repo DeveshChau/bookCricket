@@ -12,6 +12,8 @@ import { HomeComponent } from './home/home.component';
 import { environment } from 'src/environments/environment';
 import { BattingScorecardComponent } from './batting-scorecard/batting-scorecard.component';
 import { CommentaryComponent } from './commentary/commentary.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material/material.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { CommentaryComponent } from './commentary/commentary.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
