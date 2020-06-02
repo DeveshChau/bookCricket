@@ -3,7 +3,7 @@
         <tr>
             <td *ngFor="let item of overDescription">
                 <mat-chip-list aria-label="Fish selection">
-                    <mat-chip color="primary" selected>
+                    <mat-chip color="{{item.runs === 'W' ? 'accent' : 'primary'}}" selected>
                         {{item.runs}}
                     </mat-chip>
                 </mat-chip-list>
